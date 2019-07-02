@@ -23,7 +23,6 @@ extension UIImageView {
         if let u = url {
             
             if let urls = URL(string : u) {
-//                let resource = ImageResource(downloadURL: urls )
                 self.kf.setImage(with: urls)
             }
         }

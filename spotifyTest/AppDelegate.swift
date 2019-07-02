@@ -15,23 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    static var authorizations = ""
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
          IQKeyboardManager.shared.enable = true
         let redirectURL: URL = URL(string: "dpg://mydigipay/")!
-        let gg = SpotifyLogin.shared
         
       SpotifyLogin.shared.configure(clientID: "ba05b9cd59634cefa8493ac961d76ed6",
                                       clientSecret: "80b7235a88264654a105a989f6775a59",
                                       redirectURL: redirectURL)
-        gg.getAccessToken { (token, error) in
-            if error == nil {
-                AppDelegate.authorizations = token ?? ""
-            }else{
-                print(error.debugDescription)
-            }
-        }
+        
         return true
     }
 

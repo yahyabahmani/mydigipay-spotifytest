@@ -11,6 +11,7 @@ import SpotifyLogin
 import Alamofire
 import RxCocoa
 import RxSwift
+import IQKeyboardManagerSwift
 
 class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -40,6 +41,7 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       setTypeSearchTextFeild.addDoneOnKeyboardWithTarget(self, action:  #selector(doneButtonClicked))
        self.thePicker.delegate = self
         setTypeSearchTextFeild.inputView = thePicker
         dataSource.bind(to: tableView.rx.items(cellIdentifier: HomeTableViewCell.nibName)){ (row,result:SearchResult.Result,cell:HomeTableViewCell) in
@@ -76,21 +78,21 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     
+    fileprivate func showLogin() {
+       self.performSegue(withIdentifier: "showLogin", sender: nil)
+    }
+    
+   
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+       
         
         
-        SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
-            if error != nil, token == nil {
-                
-                
-                
-            }
-        }
     }
 
     fileprivate func searchQuery(_ search: String) {
-        guard let type = setTypeSearchTextFeild.text else{return}
+        guard let type = setTypeSearchTextFeild.text   else{return}
     
         self.resultViewModel.searchResult(type, search, failure: { (error) in
             if error != nil {
@@ -101,6 +103,13 @@ class HomeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         })
     }
     
-
+@objc func doneButtonClicked(_ sender: Any) {
     
+    if  let text = self.searchTextFeild.text,text.count != 0 {
+        self.searchQuery(text)
+
+    }
+    self.setTypeSearchTextFeild.resignFirstResponder()
+    }
+
 }
