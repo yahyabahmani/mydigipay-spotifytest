@@ -159,7 +159,7 @@
 		FAF79DB622C9CADF0071B943 /* spotifyTest */ = {
 			isa = PBXGroup;
 			children = (
-				FAF79DF922CA20750071B943 /* Exeption */,
+				FAF79DF922CA20750071B943 /* Extension */,
 				FAF79DF422CA1E730071B943 /* nibFile */,
 				FAF79DF122CA16580071B943 /* Model */,
 				FAF79DEE22C9E79E0071B943 /* View */,
@@ -229,13 +229,13 @@
 			path = nibFile;
 			sourceTree = "<group>";
 		};
-		FAF79DF922CA20750071B943 /* Exeption */ = {
+		FAF79DF922CA20750071B943 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				FAF79DFA22CA20A70071B943 /* Eextension.swift */,
 				FAF79DFC22CA2ABF0071B943 /* Utility.swift */,
 			);
-			path = Exeption;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
